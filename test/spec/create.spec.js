@@ -9,5 +9,14 @@ async function createUser(payload,token){
     return response
 }
 
-module.exports = {createUser}
+
+async function createUnit(payload,token){
+    const response = await request(config.baseUrl)
+    .post('/units')
+    .send(payload)
+    .set("Authorization", `Bearer ${token}`)
+    return response
+}
+
+module.exports = {createUser,createUnit}
 

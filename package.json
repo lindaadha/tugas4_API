@@ -4,9 +4,11 @@
   "description": "tugas untuk API automation menggunakan mocha, supertest",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/suite/user.suite.js --reporter mochawesome --timeout 10000",
-    "test:login": "mocha test/spec/login.spec.js",
-    "html-report:api": "open ./mochawesome-report/mochawesome.html"
+    "test:user": "mocha test/suite/user.suite.js --reporter mochawesome --timeout 10000",
+    "test:unit": "mocha test/suite/unit.suite.js --reporter mochawesome --timeout 10000",
+    "test:login": "mocha test/spec/login.spec.js --timeout 2500",
+    "test:regis": "mocha test/spec/registration.js --timeout 2500",
+    "html-report:api": "start ./mochawesome-report/mochawesome.html"
   },
   "keywords": [
     "api",

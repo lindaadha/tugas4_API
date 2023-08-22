@@ -1,27 +1,21 @@
 const request = require("supertest");
 const { expect } = require("chai");
 
-const BASEURL = "https://kasir-api.belajarqa.com"
-
-async function getToken(payload){
-    const response = await request(BASEURL)
-    .post("/authentications")
-    .send(payload)
-    return response
-}
 describe("Login Feature", () => {
     it('Success Login', async () => {
-        const payload = {
-            "email": "testing@mail.com",
+        const response = await request("https://kasir-api.belajarqa.com")
+        .post("/authentications")
+        .send({
+            "email": "testing_coba@mail.com",
             "password": "123",          
-        }
-        const response = await getToken(payload)
+        })
         // console.log((await response).status);
-        // console.log((await response).body);
+        console.log((await response).body);
+        console.log((await response).body.data.user.id);
 
         //ASSERTION
         expect((await response).status).to.equal(201);
-        expect((await response).body.data.user.name).to.equal("Toko Testing")
+        expect((await response).body.data.user.name).to.equal("Toko Testing 3")
     })
 
     it('Failed Login', async () => {
@@ -38,3 +32,16 @@ describe("Login Feature", () => {
         expect((await response).status).to.equal(401);
     })
 })
+
+// describe('Get User', ()=> {
+//     const queryPage = 2
+//     it('Success Get User Detail', async ()=> {
+//         const response = await request('https://reqres.in')
+//         .get(`/api/users`+`?page=${queryPage}`)
+//         // .del()
+//         // .set()
+//         console.log((await response).status);
+//         console.log((await response).body);
+//     })
+    
+// })
